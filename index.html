@@ -4,68 +4,110 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ПРО.АРТ — концерты при свечах в 22 городах России. Тур 2026</title>
-<meta name="description" content="Концерт при свечах с живым оркестром. Музыка Циммера, Эйнауди, Моцарта, Баха в сиянии свечей. Тур 2026 в 22 городах России. Билеты онлайн, промокод АРТ10.">
-<meta property="og:title" content="ПРО.АРТ — концерты при свечах. Тур 2026">
-<meta property="og:description" content="Симфония оживших картин: более 40 шедевров мировой живописи в сопровождении оркестра и тысяч свечей.">
+<meta name="description" content="Оркестр при свечах. Более 40 шедевров мировой живописи оживают под музыку Циммера, Эйнауди, Моцарта и Баха. Тур 2026 в 22 городах России. Билеты онлайн, промокод АРТ10.">
+<meta property="og:title" content="ПРО.АРТ — оркестр при свечах. Тур 2026">
+<meta property="og:description" content="Симфония оживших полотен в сиянии тысяч свечей. 22 города России. Билеты онлайн.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/logo.png">
-<link rel="preload" as="image" href="assets/hero-bg.jpg">
+<link rel="preload" as="image" href="assets/hero-bg.webp" fetchpriority="high">
+<link rel="preload" as="font" type="font/woff2" href="fonts/prata-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/manrope-400.woff2" crossorigin>
+<link rel="preconnect" href="https://qtickets.ru">
+<link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+<!-- Атмосфера: зерно + свечное свечение -->
+<div class="grain" aria-hidden="true"></div>
+
 <!-- Header -->
 <header class="hdr" id="hdr">
-  <a href="#top" class="hdr__logo"><img src="assets/logo.png" alt="ПРО.АРТ" width="40" height="40"><span>ПРО.АРТ</span></a>
-  <nav class="hdr__nav">
+  <a href="#top" class="hdr__logo"><img src="assets/logo.png" alt="" width="36" height="36"><span>ПРО.АРТ</span></a>
+  <nav class="hdr__nav" id="nav">
     <a href="#schedule">Расписание</a>
-    <a href="#gallery">Картины</a>
+    <a href="#gallery">Полотна</a>
     <a href="#program">Программа</a>
+    <a href="#reviews">Отзывы</a>
     <a href="#faq">FAQ</a>
   </nav>
   <a href="#schedule" class="btn btn--red hdr__cta">Купить билет</a>
-  <button class="hdr__burger" id="burger" aria-label="Меню">☰</button>
+  <button class="hdr__burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </header>
 
 <!-- Hero -->
 <section class="hero" id="top">
-  <img class="hero__bg" src="assets/hero-bg.jpg" alt="" fetchpriority="high">
-  <div class="hero__veil"></div>
-  <div class="hero__inner">
-    <p class="hero__kicker">Впервые в России</p>
-    <h1 class="hero__title">Оркестр в сиянии свечей<br>представляет историю мирового искусства</h1>
-    <p class="hero__sub">Симфония «оживших картин» в шоу ПРО.АРТ: более 40 шедевров мировой живописи в сопровождении оркестра и тысяч свечей.</p>
-    <a href="#schedule" class="btn btn--red btn--lg">Купить билет</a>
+  <div class="hero__bgwrap" aria-hidden="true">
+    <img class="hero__bg" src="assets/hero-bg.webp" alt="" fetchpriority="high">
+    <div class="hero__vignette"></div>
+    <div class="glow glow--gold" style="top:18%;left:12%"></div>
+    <div class="glow glow--blue" style="top:55%;right:8%"></div>
   </div>
-  <div class="marquee"><div class="marquee__track">
-    <span>живопись • музыка • литература • кино • танец • </span>
-    <span>живопись • музыка • литература • кино • танец • </span>
-    <span>живопись • музыка • литература • кино • танец • </span>
-  </div></div>
+  <div class="hero__inner">
+    <p class="hero__kicker reveal" style="--d:.05s">⟡ Впервые в России ⟡</p>
+    <h1 class="hero__title">
+      <span class="reveal" style="--d:.15s">Оркестр в сиянии свечей</span>
+      <span class="reveal hero__title--accent" style="--d:.3s">представляет историю искусства</span>
+    </h1>
+    <p class="hero__sub reveal" style="--d:.45s">Более 40 шедевров мировой живописи оживают под живой оркестр в мерцании тысяч свечей.</p>
+
+    <!-- ХУК: обратный отсчёт до ближайшего концерта -->
+    <div class="cd reveal" style="--d:.6s" id="countdown">
+      <div class="cd__top">
+        <span class="cd__label">До ближайшего концерта</span>
+        <span class="cd__city" id="cd-city">—</span>
+      </div>
+      <div class="cd__timer" id="cd-timer">
+        <div class="cd__unit"><b id="cd-d">00</b><span>дней</span></div>
+        <div class="cd__sep">:</div>
+        <div class="cd__unit"><b id="cd-h">00</b><span>часов</span></div>
+        <div class="cd__sep">:</div>
+        <div class="cd__unit"><b id="cd-m">00</b><span>минут</span></div>
+        <div class="cd__sep">:</div>
+        <div class="cd__unit"><b id="cd-s">00</b><span>секунд</span></div>
+      </div>
+      <a class="btn btn--red btn--block" id="cd-buy" href="#schedule">Купить билет</a>
+    </div>
+  </div>
+  <div class="marquee" aria-hidden="true"><div class="marquee__track" id="marquee"></div></div>
+</section>
+
+<!-- ХУК: соцдоказательства / цифры -->
+<section class="trust">
+  <div class="wrap trust__grid" id="trust">
+    <div class="trust__item"><b data-count="22">0</b><span>городов тура</span></div>
+    <div class="trust__item"><b data-count="40" data-suffix="+">0</b><span>полотен оживают</span></div>
+    <div class="trust__item"><b data-count="17">0</b><span>композиций вживую</span></div>
+    <div class="trust__item"><b data-count="5">0</b><span>эпох искусства</span></div>
+  </div>
 </section>
 
 <!-- Schedule -->
 <section class="sec" id="schedule">
   <div class="wrap">
-    <h2 class="sec__title">Расписание шоу <span class="g">ПРО.АРТ</span></h2>
-    <p class="sec__note">Выберите город — визуал шоу зависит от возможностей площадки</p>
-    <div class="filter">
-      <select id="cityFilter" class="filter__select"><option value="">Все города</option></select>
+    <p class="sec__kicker reveal">Афиша тура 2026</p>
+    <h2 class="sec__title reveal">Расписание шоу <span class="i">ПРО.АРТ</span></h2>
+    <p class="sec__note reveal">Выберите свой город — обновим таймер до концерта</p>
+    <div class="filter reveal">
+      <select id="cityFilter" class="filter__select" aria-label="Выбор города"><option value="">Все города</option></select>
     </div>
     <div class="sched" id="sched"></div>
-    <div class="partners">
-      <img src="assets/partners/yandex.png" alt="Яндекс Афиша" loading="lazy">
-      <img src="assets/partners/afisha.png" alt="Afisha" loading="lazy">
-      <img src="assets/partners/kassir.png" alt="Kassir" loading="lazy">
+    <div class="partners reveal">
+      <span>Билеты на:</span>
+      <img src="assets/partners/yandex.webp" alt="Яндекс Афиша" loading="lazy">
+      <img src="assets/partners/afisha.webp" alt="Afisha" loading="lazy">
+      <img src="assets/partners/kassir.webp" alt="Kassir" loading="lazy">
     </div>
   </div>
 </section>
 
-<!-- Gallery -->
-<section class="sec sec--dark" id="gallery">
+<!-- Gallery: ожившие полотна -->
+<section class="sec sec--deep" id="gallery">
   <div class="wrap">
-    <p class="sec__kicker">Только представьте</p>
-    <h2 class="sec__title">Мировые полотна оживут <span class="g">прямо на ваших глазах</span></h2>
+    <p class="sec__kicker reveal">Только представьте</p>
+    <h2 class="sec__title reveal">Мировые полотна <span class="i">оживают на ваших глазах</span></h2>
     <div class="gallery" id="gallery-grid"></div>
   </div>
 </section>
@@ -73,24 +115,24 @@
 <!-- About -->
 <section class="sec about" id="about">
   <div class="wrap about__grid">
-    <div>
-      <h2 class="sec__title">Симфония ожившего искусства<br>в мерцании свечей и звуков оркестра</h2>
-      <p>Взгляните по-новому на знакомые произведения и станьте героями необычного арт-путешествия. Оркестр проведёт вас через пять эпох мировой культуры — от античности через Возрождение к модернизму и авангарду.</p>
-      <p>Золотые оттенки Густава Климта мягко мерцают и обретают объём, а звёздное небо Ван Гога становится ближе и глубже вместе со звучанием. Успейте загадать желание, если заметите на небосклоне падающую звезду.</p>
+    <div class="reveal">
+      <p class="sec__kicker" style="text-align:left">Пять эпох за один вечер</p>
+      <h2 class="sec__title" style="text-align:left">Симфония ожившего искусства в мерцании свечей</h2>
+      <p>Взгляните по-новому на знакомые произведения и станьте героем арт-путешествия. Оркестр проведёт вас от античности через Возрождение к модернизму и авангарду.</p>
+      <p>Золото Климта мягко мерцает и обретает объём, а звёздное небо Ван Гога становится ближе и глубже вместе со звучанием. Успейте загадать желание, если заметите падающую звезду.</p>
+      <a href="#schedule" class="btn btn--ghost">Выбрать концерт →</a>
     </div>
-    <div class="stats">
-      <div class="stat"><b>5</b><span>мировых эпох</span></div>
-      <div class="stat"><b>40+</b><span>шедевров живописи</span></div>
-      <div class="stat"><b>17</b><span>музыкальных композиций</span></div>
-      <div class="stat"><b>22</b><span>города тура</span></div>
+    <div class="about__pic reveal" style="--d:.15s" aria-hidden="true">
+      <div class="glow glow--gold" style="inset:0"></div>
     </div>
   </div>
 </section>
 
 <!-- Features -->
-<section class="sec sec--dark">
+<section class="sec sec--deep">
   <div class="wrap">
-    <h2 class="sec__title">Что говорят зрители <span class="g">о наших концертах</span></h2>
+    <p class="sec__kicker reveal">Опыт, который не предугадать</p>
+    <h2 class="sec__title reveal">Что переживают <span class="i">зрители</span></h2>
     <div class="features" id="features"></div>
   </div>
 </section>
@@ -98,39 +140,42 @@
 <!-- Video reviews -->
 <section class="sec" id="reviews">
   <div class="wrap">
-    <h2 class="sec__title">Отзывы <span class="g">посетителей</span></h2>
+    <p class="sec__kicker reveal">Живые эмоции</p>
+    <h2 class="sec__title reveal">Отзывы <span class="i">посетителей</span></h2>
     <div class="reviews" id="reviews-grid"></div>
   </div>
 </section>
 
 <!-- Program -->
-<section class="sec sec--dark" id="program">
+<section class="sec sec--deep" id="program">
   <div class="wrap">
-    <h2 class="sec__title">Программа <span class="g">вечера</span></h2>
+    <p class="sec__kicker reveal">17 композиций вживую</p>
+    <h2 class="sec__title reveal">Программа <span class="i">вечера</span></h2>
     <div class="program" id="program-grid"></div>
+  </div>
+</section>
+
+<!-- Promo -->
+<section class="promo" id="promo">
+  <div class="wrap promo__inner">
+    <div class="reveal">
+      <p class="promo__k">Идите вместе с близкими — будет выгоднее</p>
+      <p class="promo__txt">Нажмите на промокод, чтобы скопировать</p>
+    </div>
+    <div class="promo__codes reveal" style="--d:.1s">
+      <button class="code" data-code="АРТ10">АРТ10 <small>−10% на любой билет</small></button>
+      <button class="code" data-code="ТРИО25">ТРИО25 <small>−25% от 3 билетов</small></button>
+      <button class="code" data-code="ШОУ30">ШОУ30 <small>−30% от 5 билетов</small></button>
+    </div>
   </div>
 </section>
 
 <!-- FAQ -->
 <section class="sec" id="faq">
   <div class="wrap wrap--narrow">
-    <h2 class="sec__title">Вопросы <span class="g">и ответы</span></h2>
+    <p class="sec__kicker reveal">Коротко о главном</p>
+    <h2 class="sec__title reveal">Вопросы <span class="i">и ответы</span></h2>
     <div class="faq" id="faq-list"></div>
-  </div>
-</section>
-
-<!-- Promo -->
-<section class="promo">
-  <div class="wrap promo__inner">
-    <div>
-      <p class="promo__k">Погрузитесь в искусство вместе с близкими</p>
-      <p class="promo__txt">Скидка <b>25%</b> от 3 билетов · Скидка <b>30%</b> от 5 билетов</p>
-    </div>
-    <div class="promo__codes">
-      <button class="code" data-code="АРТ10">АРТ10 <small>−10%</small></button>
-      <button class="code" data-code="ТРИО25">ТРИО25 <small>−25%</small></button>
-      <button class="code" data-code="ШОУ30">ШОУ30 <small>−30%</small></button>
-    </div>
   </div>
 </section>
 
@@ -138,14 +183,14 @@
 <footer class="ftr" id="contacts">
   <div class="wrap ftr__grid">
     <div>
-      <img class="ftr__brand" src="assets/logo.png" alt="ПРО.АРТ" width="56" height="56">
+      <img class="ftr__brand" src="assets/logo.png" alt="ПРО.АРТ" width="52" height="52">
       <p class="ftr__lead">Симфония ожившего искусства в сиянии свечей.</p>
     </div>
     <div>
       <h3>Контакты</h3>
       <p><a href="tel:+78002222578">8 (800) 222-25-78</a></p>
       <p><a href="mailto:info@proart-show.ru">info@proart-show.ru</a></p>
-      <p class="ftr__soc"><a href="https://t.me/" target="_blank" rel="noopener">Telegram</a> · <a href="https://vk.com/" target="_blank" rel="noopener">VK</a></p>
+      <p class="ftr__soc"><a href="https://t.me/" target="_blank" rel="noopener">Telegram</a> · <a href="https://vk.com/" target="_blank" rel="noopener">ВКонтакте</a></p>
     </div>
     <div class="ftr__legal">
       <p>ООО «СКДРОН»</p>
@@ -156,7 +201,15 @@
   <p class="ftr__copy">© 2026 ПРО.АРТ. Все права защищены.</p>
 </footer>
 
-<!-- Toast -->
+<!-- ХУК: липкая мобильная панель -->
+<div class="sticky" id="sticky">
+  <div class="sticky__info">
+    <span class="sticky__promo">Промокод <b>АРТ10</b></span>
+    <span class="sticky__sub" id="sticky-sub">Ближайший — скоро</span>
+  </div>
+  <a href="#schedule" class="btn btn--red">Купить билет</a>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script src="js/data.js"></script>
