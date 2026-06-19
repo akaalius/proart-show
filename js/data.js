@@ -29,13 +29,13 @@ const SCHEDULE = [
 
 const PAINTINGS = [
   { img:'assets/paintings/kartina6.webp',   title:'Девушка с жемчужной серёжкой', author:'Ян Вермеер' },
-  { img:'assets/paintings/kartina1.webp',   title:'Рождение Венеры', author:'Сандро Боттичелли' },
-  { img:'assets/paintings/kartina4.webp',   title:'Любовь земная и Любовь небесная', author:'Тициан Вечеллио' },
-  { img:'assets/paintings/kartina5.webp',   title:'Постоянство памяти', author:'Сальвадор Дали' },
-  { img:'assets/paintings/kartina1-1.webp', title:'Смерть и жизнь', author:'Густав Климт' },
+  { img:'assets/paintings/kartina5.webp',   title:'Рождение Венеры', author:'Сандро Боттичелли' },
+  { img:'assets/paintings/kartina8.webp',   title:'Любовь земная и Любовь небесная', author:'Тициан Вечеллио' },
+  { img:'assets/paintings/kartina10.webp',  title:'Постоянство памяти', author:'Сальвадор Дали' },
+  { img:'assets/paintings/kartina4.webp',   title:'Смерть и жизнь', author:'Густав Климт' },
   { img:'assets/paintings/kartina1-2.webp', title:'Поцелуй', author:'Густав Климт' },
-  { img:'assets/paintings/kartina10.webp',  title:'Крик', author:'Эдвард Мунк' },
-  { img:'assets/paintings/kartina8.webp',   title:'Звёздная ночь', author:'Винсент Ван Гог' },
+  { img:'assets/paintings/kartina1-1.webp', title:'Крик', author:'Эдвард Мунк' },
+  { img:'assets/paintings/kartina1.webp',   title:'Звёздная ночь', author:'Винсент Ван Гог' },
 ];
 
 const PROGRAM = [

@@ -40,13 +40,13 @@ function renderFeatures() {
 // ---- Video reviews (lazy) ----
 function renderReviews() {
   const n = [1,2,3,4];
-  $('#reviews').innerHTML = n.map(i => `
+  $('#reviews-grid').innerHTML = n.map(i => `
     <div class="rev"><video src="assets/video/rev${i}.mp4" controls preload="none" playsinline poster="assets/rev${i}.jpg"></video></div>`).join('');
 }
 
 // ---- Program ----
 function renderProgram() {
-  $('#program').innerHTML = PROGRAM.map(part => `
+  $('#program-grid').innerHTML = PROGRAM.map(part => `
     <div class="ppart">
       <h3>${esc(part.part)}</h3>
       ${part.items.map(it => `
@@ -59,12 +59,12 @@ function renderProgram() {
 
 // ---- FAQ ----
 function renderFAQ() {
-  $('#faq').innerHTML = FAQ.map(f => `
+  $('#faq-list').innerHTML = FAQ.map(f => `
     <div class="faq__item">
       <button class="faq__q">${esc(f.q)}</button>
       <div class="faq__a"><p>${esc(f.a)}</p></div>
     </div>`).join('');
-  $('#faq').addEventListener('click', e => {
+  $('#faq-list').addEventListener('click', e => {
     const q = e.target.closest('.faq__q'); if (!q) return;
     const item = q.parentElement, a = $('.faq__a', item);
     const open = item.classList.toggle('open');
