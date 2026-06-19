@@ -1,3 +1,7 @@
+@font-face{font-family:'Manrope';font-style:normal;font-weight:400;font-display:swap;src:url('../fonts/manrope-400.woff2') format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:600;font-display:swap;src:url('../fonts/manrope-600.woff2') format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:800;font-display:swap;src:url('../fonts/manrope-800.woff2') format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
+@font-face{font-family:'Prata';font-style:normal;font-weight:400;font-display:swap;src:url('../fonts/prata-400.woff2') format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
 :root{
   --bg:#05070f; --bg2:#080b18; --deep:#0a0e1e; --card:#0c1124;
   --ink:#f4eee2; --muted:#9690a6; --line:rgba(160,150,200,.14);
@@ -62,6 +66,11 @@ a{color:inherit;text-decoration:none}
 .hero__title span{display:block}
 .hero__title--accent{color:var(--gold2)}
 .hero__sub{color:#d7d0e0;font-size:clamp(1rem,1.6vw,1.22rem);max-width:600px;margin:22px auto 0}
+/* Вход героя на загрузке (без JS). Заголовок — только сдвиг, opacity:1 → LCP не страдает */
+@keyframes heroFade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes heroSlide{from{transform:translateY(20px)}to{transform:none}}
+.hero-in{animation:heroFade .7s ease both;animation-delay:var(--d,0s)}
+.hero-slide{animation:heroSlide .8s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--d,0s)}
 
 /* Countdown — хук */
 .cd{margin:38px auto 0;max-width:540px;background:rgba(10,13,28,.6);border:1px solid var(--line);border-radius:18px;padding:22px 24px 24px;backdrop-filter:blur(10px);box-shadow:0 20px 60px rgba(0,0,0,.5)}
@@ -226,6 +235,7 @@ a{color:inherit;text-decoration:none}
   .marquee__track{animation:none}
   .glow{animation:none}
   .reveal{opacity:1;transform:none;transition:none}
+  .hero-in,.hero-slide{animation:none}
   .paint img{filter:none;transform:none}
   html{scroll-behavior:auto}
 }
