@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ПРО.АРТ — концерты при свечах в 22 городах России. Тур 2026</title>
+<meta name="description" content="Концерт при свечах с живым оркестром. Музыка Циммера, Эйнауди, Моцарта, Баха в сиянии свечей. Тур 2026 в 22 городах России. Билеты онлайн, промокод АРТ10.">
+<meta property="og:title" content="ПРО.АРТ — концерты при свечах. Тур 2026">
+<meta property="og:description" content="Симфония оживших картин: более 40 шедевров мировой живописи в сопровождении оркестра и тысяч свечей.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/logo.png">
+<link rel="preload" as="image" href="assets/hero-poster.jpg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="hdr" id="hdr">
+  <a href="#top" class="hdr__logo"><img src="assets/logo.png" alt="ПРО.АРТ" width="40" height="40"><span>ПРО.АРТ</span></a>
+  <nav class="hdr__nav">
+    <a href="#schedule">Расписание</a>
+    <a href="#gallery">Картины</a>
+    <a href="#program">Программа</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <a href="#schedule" class="btn btn--gold hdr__cta">Купить билет</a>
+  <button class="hdr__burger" id="burger" aria-label="Меню">☰</button>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="top">
+  <video class="hero__bg" autoplay muted loop playsinline preload="none" poster="assets/hero-poster.jpg">
+    <source src="assets/video/hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero__veil"></div>
+  <div class="hero__inner">
+    <p class="hero__kicker">Впервые в России</p>
+    <h1 class="hero__title">Оркестр в сиянии свечей<br>представляет историю мирового искусства</h1>
+    <p class="hero__sub">Симфония «оживших картин» в шоу ПРО.АРТ: более 40 шедевров мировой живописи в сопровождении оркестра и тысяч свечей.</p>
+    <a href="#schedule" class="btn btn--gold btn--lg">Купить билет</a>
+  </div>
+  <div class="marquee"><div class="marquee__track">
+    <span>живопись • музыка • литература • кино • танец • </span>
+    <span>живопись • музыка • литература • кино • танец • </span>
+    <span>живопись • музыка • литература • кино • танец • </span>
+  </div></div>
+</section>
+
+<!-- Schedule -->
+<section class="sec" id="schedule">
+  <div class="wrap">
+    <h2 class="sec__title">Расписание шоу <span class="g">ПРО.АРТ</span></h2>
+    <p class="sec__note">Выберите город — визуал шоу зависит от возможностей площадки</p>
+    <div class="filter">
+      <select id="cityFilter" class="filter__select"><option value="">Все города</option></select>
+    </div>
+    <div class="sched" id="sched"></div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="sec sec--dark" id="gallery">
+  <div class="wrap">
+    <p class="sec__kicker">Только представьте</p>
+    <h2 class="sec__title">Мировые полотна оживут <span class="g">прямо на ваших глазах</span></h2>
+    <div class="gallery" id="gallery-grid"></div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="sec about" id="about">
+  <div class="wrap about__grid">
+    <div>
+      <h2 class="sec__title">Симфония ожившего искусства<br>в мерцании свечей и звуков оркестра</h2>
+      <p>Взгляните по-новому на знакомые произведения и станьте героями необычного арт-путешествия. Оркестр проведёт вас через пять эпох мировой культуры — от античности через Возрождение к модернизму и авангарду.</p>
+      <p>Золотые оттенки Густава Климта мягко мерцают и обретают объём, а звёздное небо Ван Гога становится ближе и глубже вместе со звучанием. Успейте загадать желание, если заметите на небосклоне падающую звезду.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>5</b><span>мировых эпох</span></div>
+      <div class="stat"><b>40+</b><span>шедевров живописи</span></div>
+      <div class="stat"><b>17</b><span>музыкальных композиций</span></div>
+      <div class="stat"><b>22</b><span>города тура</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="sec sec--dark">
+  <div class="wrap">
+    <h2 class="sec__title">Что говорят зрители <span class="g">о наших концертах</span></h2>
+    <div class="features" id="features"></div>
+  </div>
+</section>
+
+<!-- Video reviews -->
+<section class="sec" id="reviews">
+  <div class="wrap">
+    <h2 class="sec__title">Отзывы <span class="g">посетителей</span></h2>
+    <div class="reviews" id="reviews"></div>
+  </div>
+</section>
+
+<!-- Program -->
+<section class="sec sec--dark" id="program">
+  <div class="wrap">
+    <h2 class="sec__title">Программа <span class="g">вечера</span></h2>
+    <div class="program" id="program"></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap wrap--narrow">
+    <h2 class="sec__title">Вопросы <span class="g">и ответы</span></h2>
+    <div class="faq" id="faq"></div>
+  </div>
+</section>
+
+<!-- Promo -->
+<section class="promo">
+  <div class="wrap promo__inner">
+    <div>
+      <p class="promo__k">Погрузитесь в искусство вместе с близкими</p>
+      <p class="promo__txt">Скидка <b>25%</b> от 3 билетов · Скидка <b>30%</b> от 5 билетов</p>
+    </div>
+    <div class="promo__codes">
+      <button class="code" data-code="АРТ10">АРТ10 <small>−10%</small></button>
+      <button class="code" data-code="ТРИО25">ТРИО25 <small>−25%</small></button>
+      <button class="code" data-code="ШОУ30">ШОУ30 <small>−30%</small></button>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="ftr" id="contacts">
+  <div class="wrap ftr__grid">
+    <div>
+      <img src="assets/logo.png" alt="ПРО.АРТ" width="56" height="56">
+      <p class="ftr__lead">Симфония ожившего искусства в сиянии свечей.</p>
+    </div>
+    <div>
+      <h3>Контакты</h3>
+      <p><a href="tel:+78002222578">8 (800) 222-25-78</a></p>
+      <p><a href="mailto:info@proart-show.ru">info@proart-show.ru</a></p>
+      <p class="ftr__soc"><a href="https://t.me/" target="_blank" rel="noopener">Telegram</a> · <a href="https://vk.com/" target="_blank" rel="noopener">VK</a></p>
+    </div>
+    <div class="ftr__legal">
+      <p>ООО «СКДРОН»</p>
+      <p>ИНН 9731157155 · ОГРН 1257700482390</p>
+      <p>Политика конфиденциальности · Публичная оферта</p>
+    </div>
+  </div>
+  <p class="ftr__copy">© 2026 ПРО.АРТ. Все права защищены.</p>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
