@@ -6,8 +6,19 @@ const fmtDate = iso => { const d = new Date(iso); return `${d.getDate()} ${MONTH
 const fmtFull = iso => { const d = new Date(iso); return `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`; };
 
 /* ---------- Расписание ---------- */
+const SCHED_LIMIT = 6;
+let schedExpanded = false;
 function renderSchedule(city='') {
-  const list = city ? SCHEDULE.filter(e => e.city === city) : SCHEDULE;
+  const all = city ? SCHEDULE.filter(e => e.city === city) : SCHEDULE;
+  // при выборе города показываем всё (их немного); по «Все города» — сворачиваем
+  const collapsed = !city && !schedExpanded && all.length > SCHED_LIMIT;
+  const list = collapsed ? all.slice(0, SCHED_LIMIT) : all;
+  const more = $('#schedMore');
+  if (more) {
+    const hidden = all.length <= SCHED_LIMIT || !!city;
+    more.hidden = hidden;
+    more.textContent = schedExpanded ? 'Свернуть' : `Показать все ${all.length} концертов`;
+  }
   $('#sched').innerHTML = list.map((e, i) => `
     <article class="card reveal" style="--d:${(i % 3) * 0.07}s">
       <div class="card__media">
@@ -192,4 +203,5 @@ initChrome();
 observeReveal();
 setCountdownCity('');
 setInterval(tickCountdown, 1000);
-$('#cityFilter').addEventListener('change', e => { renderSchedule(e.target.value); setCountdownCity(e.target.value); });
+$('#cityFilter').addEventListener('change', e => { schedExpanded = false; renderSchedule(e.target.value); setCountdownCity(e.target.value); });
+$('#schedMore').addEventListener('click', () => { schedExpanded = !schedExpanded; renderSchedule($('#cityFilter').value); });
