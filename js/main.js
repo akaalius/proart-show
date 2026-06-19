@@ -6,13 +6,16 @@ const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','
 // ---- Schedule + city filter ----
 function renderSchedule(city='') {
   const list = city ? SCHEDULE.filter(e => e.city === city) : SCHEDULE;
-  $('#sched').innerHTML = list.map(e => `
+  $('#sched').innerHTML = list.map((e, i) => `
     <article class="card">
-      <span class="card__date">${fmtDate(e.date)} · 19:00</span>
-      <h3 class="card__city">${esc(e.city)}</h3>
-      <p class="card__venue">${esc(e.venue)}</p>
-      <p class="card__addr">${esc(e.addr)}</p>
-      <a class="btn btn--gold" href="${e.url}" target="_blank" rel="noopener">Купить билет</a>
+      <img class="card__img" src="assets/stage/stage${(i % 4) + 1}.jpg" alt="ПРО.АРТ в ${esc(e.city)}" loading="lazy">
+      <div class="card__body">
+        <span class="card__date">${fmtDate(e.date)} · 19:00</span>
+        <h3 class="card__city">${esc(e.city)}</h3>
+        <p class="card__venue">${esc(e.venue)}</p>
+        <p class="card__addr">${esc(e.addr)}</p>
+        <a class="btn btn--red" href="${e.url}" target="_blank" rel="noopener">Купить билет</a>
+      </div>
     </article>`).join('');
 }
 function fillCities() {
@@ -38,7 +41,7 @@ function renderFeatures() {
 function renderReviews() {
   const n = [1,2,3,4];
   $('#reviews').innerHTML = n.map(i => `
-    <div class="rev"><video src="assets/video/rev${i}.mp4" controls preload="none" playsinline poster="assets/rev${i<=3?i:1}.jpg"></video></div>`).join('');
+    <div class="rev"><video src="assets/video/rev${i}.mp4" controls preload="none" playsinline poster="assets/rev${i}.jpg"></video></div>`).join('');
 }
 
 // ---- Program ----
